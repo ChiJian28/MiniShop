@@ -1,0 +1,21 @@
+我正在实现一个秒杀系统(using Go) for 我的个人项目学习ready for internship，现在项目结构做好了，你要实现每个service，我希望你有用到以下技术：
+
+### Backend
+
+Go, Gin(RESTAPI)，GORM
+
+grpc服务之间，restfulapi 对外
+
+Redis
+
+RabbitMQ/Kafka
+
+Nginx
+
+PostgreSQL
+
+Kubernetes
+
+Istio
+
+Docker

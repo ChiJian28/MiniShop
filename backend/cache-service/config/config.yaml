@@ -1,0 +1,25 @@
+server:
+  port: 8082
+  grpc_port: 9082
+
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 10
+  min_idle_conns: 5
+  max_retries: 3
+  dial_timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+log:
+  level: info
+  format: json
+
+seckill:
+  stock_key_prefix: "seckill:stock:"
+  user_key_prefix: "seckill:users:"
+  lock_key_prefix: "seckill:lock:"
+  default_ttl: 3600  # 1 hour in seconds 
