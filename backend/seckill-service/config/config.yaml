@@ -1,0 +1,67 @@
+server:
+  port: 8083
+  grpc_port: 9083
+
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 20
+  min_idle_conns: 10
+  max_retries: 3
+  dial_timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+cache_service:
+  host: localhost
+  port: 8082
+  timeout: 5s
+
+rabbitmq:
+  url: "amqp://guest:guest@localhost:5672/"
+  exchange: "seckill"
+  queue: "seckill.order"
+  routing_key: "seckill.order.create"
+  durable: true
+  auto_delete: false
+
+kafka:
+  brokers: ["localhost:9092"]
+  topic: "seckill-orders"
+  partition: 0
+  timeout: 10s
+
+seckill:
+  # 流控配置
+  max_concurrent_requests: 1000      # 最大并发请求数
+  queue_size: 5000                   # 排队队列大小
+  request_timeout: 30s               # 请求超时时间
+  
+  # 限流配置
+  rate_limit:
+    requests_per_second: 500         # 每秒请求数限制
+    burst_size: 1000                 # 突发请求数
+  
+  # 熔断配置
+  circuit_breaker:
+    failure_threshold: 10            # 失败阈值
+    recovery_timeout: 60s            # 恢复超时时间
+    half_open_requests: 5            # 半开状态请求数
+  
+  # 降级配置
+  degradation:
+    enable: true                     # 是否启用降级
+    threshold: 0.8                   # 降级阈值（CPU/内存使用率）
+    response_message: "系统繁忙，请稍后重试"
+
+log:
+  level: info
+  format: json
+  file: "./logs/seckill-service.log"
+
+monitoring:
+  enable: true
+  port: 8084
+  path: "/metrics" 
