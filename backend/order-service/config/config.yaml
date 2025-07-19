@@ -1,0 +1,85 @@
+server:
+  port: 8084
+  grpc_port: 9084
+
+database:
+  driver: postgres  # postgres, mysql
+  postgres:
+    host: postgres
+    port: 5432
+    user: postgres
+    password: postgres
+    dbname: order_db
+    sslmode: disable
+    timezone: UTC
+  mysql:
+    host: mysql
+    port: 3306
+    user: root
+    password: mysql
+    dbname: order_db
+    charset: utf8mb4
+    parse_time: true
+    loc: Local
+  
+  # 连接池配置
+  max_idle_conns: 10
+  max_open_conns: 100
+  conn_max_lifetime: 3600s
+
+redis:
+  host: redis
+  port: 6379
+  password: ""
+  db: 1  # 使用不同的数据库
+  pool_size: 20
+  min_idle_conns: 10
+  max_retries: 3
+  dial_timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+rabbitmq:
+  url: "amqp://guest:guest@rabbitmq:5672/"
+  exchange: "seckill"
+  queue: "seckill.order"
+  routing_key: "seckill.order.create"
+  durable: true
+  auto_delete: false
+  prefetch_count: 10
+
+kafka:
+  brokers: ["kafka:9092"]
+  topic: "seckill-orders"
+  group_id: "order-service"
+  partition: 0
+  timeout: 10s
+
+order:
+  # 订单配置
+  order_timeout: 1800s  # 30分钟订单超时
+  payment_timeout: 900s  # 15分钟支付超时
+  
+  # 重试配置
+  retry:
+    max_attempts: 3
+    initial_interval: 1s
+    max_interval: 30s
+    multiplier: 2.0
+  
+  # 补偿任务配置
+  compensation:
+    enable: true
+    check_interval: 300s  # 5分钟检查一次
+    max_retry_hours: 24   # 最大重试24小时
+    batch_size: 100       # 批处理大小
+
+log:
+  level: info
+  format: json
+  file: "./logs/order-service.log"
+
+monitoring:
+  enable: true
+  port: 8085
+  path: "/metrics" 
