@@ -69,7 +69,7 @@ server:
   grpc_port: 9083                   # gRPC 服务端口
 
 redis:
-  host: localhost                   # Redis 主机
+  host: redis                   # Redis 主机
   port: 6379                        # Redis 端口
   pool_size: 20                     # 连接池大小
 

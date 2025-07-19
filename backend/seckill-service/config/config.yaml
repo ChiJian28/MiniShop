@@ -3,7 +3,7 @@ server:
   grpc_port: 9083
 
 redis:
-  host: localhost
+  host: redis
   port: 6379
   password: ""
   db: 0
@@ -15,12 +15,12 @@ redis:
   write_timeout: 3s
 
 cache_service:
-  host: localhost
+  host: cache-service
   port: 8082
   timeout: 5s
 
 rabbitmq:
-  url: "amqp://guest:guest@localhost:5672/"
+  url: "amqp://guest:guest@rabbitmq:5672/"
   exchange: "seckill"
   queue: "seckill.order"
   routing_key: "seckill.order.create"
@@ -28,7 +28,7 @@ rabbitmq:
   auto_delete: false
 
 kafka:
-  brokers: ["localhost:9092"]
+  brokers: ["kafka:9092"]
   topic: "seckill-orders"
   partition: 0
   timeout: 10s

@@ -1,0 +1,268 @@
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:01Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:01Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:01Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:01Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:01Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:01Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:02Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:02Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:02Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:03Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:03Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:03Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:03Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:03Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:03Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:04Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:04Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:04Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:04Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:04Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:04Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:06Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:06Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:06Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:06Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:06Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:06Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:09Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:09Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:09Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:09Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:09Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:09Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:15Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:15Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:15Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:15Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:16Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:16Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:28Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:28Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:28Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:28Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:28Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:28Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:16:54Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:16:54Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:16:54Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:16:54Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:16:54Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:16:54Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:17:46Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:17:46Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:17:46Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:17:46Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:17:46Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp [::1]:5672: connect: connection refused","time":"2025-07-19T03:17:46Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:18:46Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:18:46Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:19:46Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:19:46Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:20:46Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:20:47Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:21:47Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:21:47Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:22:47Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:22:47Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:23:47Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:23:47Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:24:48Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp: lookup redis on 127.0.0.11:53: no such host","time":"2025-07-19T03:24:48Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:01Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:01Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:01Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:01Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:01Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:01Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:02Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:02Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:03Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:03Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:05Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:05Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:08Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:08Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:15Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:15Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:28Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:26:28Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:26:54Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:38Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:38Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:38Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:38Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:39Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:39Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:39Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:39Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:40Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:40Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:42Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:42Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:46Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:46Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:29:52Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:29:52Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:30:05Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:30:05Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:30:31Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:30:31Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:31:23Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:31:23Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:22Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:22Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:23Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:23Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:23Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:23Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:24Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:24Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:25Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:25Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:27Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:27Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:30Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:30Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:37Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:37Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:32:50Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:32:50Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:33:15Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:33:16Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:34:07Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:34:07Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:07Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:35:07Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:49Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:49Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:49Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:49Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:49Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:50Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:50Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:50Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:51Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:51Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:53Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:53Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:35:56Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:35:56Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:36:03Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:36:03Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:36:16Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:36:16Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:36:42Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:36:42Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:37:33Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:37:33Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:38:34Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:38:34Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:39:34Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:39:34Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:40:34Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:40:34Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:41:35Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.2:6380: connect: connection refused","time":"2025-07-19T03:41:35Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:07Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:07Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:07Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:07Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:08Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:08Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:08Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:08Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:09Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:09Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:11Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:11Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:14Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:15Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:21Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:21Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:44:34Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to connect to redis: dial tcp 172.19.0.3:6380: connect: connection refused","time":"2025-07-19T03:44:34Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:19Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:19Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:19Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:19Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:20Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:20Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:20Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:20Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:20Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:20Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:21Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:21Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:21Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:21Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:21Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:21Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:22Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:22Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:22Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:22Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:22Z"}
+{"level":"fatal","msg":"Failed to create seckill service: failed to create message queue: failed to connect to RabbitMQ: dial tcp 172.19.0.3:5672: connect: connection refused","time":"2025-07-19T03:45:22Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"RabbitMQ producer initialized successfully","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Seckill service created successfully","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Request queue started with 10 workers, capacity: 5000","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Seckill service started","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Starting HTTP server on port 8083","time":"2025-07-19T03:45:26Z"}
+{"level":"info","msg":"Shutting down server...","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Server exited","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Request queue closed","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"RabbitMQ producer closed","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Seckill service stopped","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Starting seckill service...","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Loaded script seckill with SHA: 554ccb9f446d193d284767c6eb6c509db537196f","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Loaded script rollback with SHA: 2890b4b7e0a6a8d2f015fad727710f56c3f1593a","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Loaded script batch_check with SHA: e042ac0d8ec84eb57bd83f096aa102ddb67caf2c","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Loaded script stats with SHA: acc9a782d950d89b2459c6bfd20a2835c646ad9a","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"RabbitMQ producer initialized successfully","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Seckill service created successfully","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Request queue started with 10 workers, capacity: 5000","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Seckill service started","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Starting HTTP server on port 8083","time":"2025-07-19T03:46:51Z"}
+{"level":"info","msg":"Prewarmed activity for product 1001 with stock 100","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2001, product=1001, order=SK100120011752896834385104426, remaining_stock=99","time":"2025-07-19T03:47:14Z"}
+{"level":"error","msg":"Async seckill failed: context canceled","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2002, product=1001, order=SK100120021752896834415715926, remaining_stock=98","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2009, product=1001, order=SK100120091752896834532330384, remaining_stock=96","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2007, product=1001, order=SK100120071752896834532347718, remaining_stock=94","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2005, product=1001, order=SK100120051752896834533124259, remaining_stock=92","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2004, product=1001, order=SK100120041752896834532883468, remaining_stock=93","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2006, product=1001, order=SK100120061752896834532380384, remaining_stock=97","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2003, product=1001, order=SK100120031752896834532700009, remaining_stock=95","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2008, product=1001, order=SK100120081752896834537266843, remaining_stock=91","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2011, product=1001, order=SK100120111752896834539015343, remaining_stock=90","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Seckill success: user=2010, product=1001, order=SK100120101752896834539497468, remaining_stock=89","time":"2025-07-19T03:47:14Z"}
+{"level":"info","msg":"Cleaned up activity for product 1001","time":"2025-07-19T03:47:14Z"}
