@@ -60,7 +60,7 @@ server:
   grpc_port: 9082              # gRPC 服务端口
 
 redis:
-  host: localhost              # Redis 主机
+  host: redis              # Redis 主机
   port: 6379                   # Redis 端口
   password: ""                 # Redis 密码
   db: 0                        # Redis 数据库

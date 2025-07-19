@@ -8,6 +8,7 @@ import (
 	"cache-service/internal/lock"
 	"cache-service/internal/redis"
 	"cache-service/internal/seckill"
+	"github.com/sirupsen/logrus"
 )
 
 type CacheService struct {
@@ -20,14 +21,12 @@ type Config struct {
 	Seckill *seckill.Config
 }
 
-func NewCacheService(config *Config) (*CacheService, error) {
-	// 初始化 Redis 客户端
-	redisClient, err := redis.NewClient(config.Redis, nil)
+func NewCacheService(config *Config, logger *logrus.Logger) (*CacheService, error) {
+	redisClient, err := redis.NewClient(config.Redis, logger)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create redis client: %w", err)
 	}
 
-	// 初始化秒杀缓存
 	seckillCache := seckill.NewSeckillCache(redisClient, config.Seckill)
 
 	return &CacheService{
@@ -35,6 +34,7 @@ func NewCacheService(config *Config) (*CacheService, error) {
 		seckillCache: seckillCache,
 	}, nil
 }
+
 
 func (cs *CacheService) Close() error {
 	return cs.redisClient.Close()

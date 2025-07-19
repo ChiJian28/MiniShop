@@ -28,6 +28,11 @@ type Config struct {
 }
 
 func NewClient(config *Config, logger *logrus.Logger) (*Client, error) {
+	if logger == nil {
+		logger = logrus.New()
+		logger.Warn("logger is nil, creating default logger")
+	}
+	
 	rdb := redis.NewClient(&redis.Options{
 		Addr:         fmt.Sprintf("%s:%d", config.Host, config.Port),
 		Password:     config.Password,

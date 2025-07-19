@@ -15,9 +15,20 @@ import (
 	"cache-service/internal/redis"
 	"cache-service/internal/seckill"
 	"cache-service/internal/service"
+	"github.com/sirupsen/logrus"
 )
 
+func initLogger() *logrus.Logger {
+	logger := logrus.New()
+	logger.SetLevel(logrus.InfoLevel)
+	logger.SetFormatter(&logrus.TextFormatter{FullTimestamp: true})
+	return logger
+}
+
 func main() {
+	// 初始化 logger
+	logger := initLogger()
+
 	// 加载配置
 	cfg, err := config.LoadConfig("./config")
 	if err != nil {
@@ -53,9 +64,9 @@ func main() {
 	}
 
 	// 创建缓存服务
-	cacheService, err := service.NewCacheService(serviceConfig)
+	cacheService, err := service.NewCacheService(serviceConfig, logger)
 	if err != nil {
-		log.Fatalf("Failed to create cache service: %v", err)
+		logger.Fatalf("Failed to create cache service: %v", err)
 	}
 	defer cacheService.Close()
 

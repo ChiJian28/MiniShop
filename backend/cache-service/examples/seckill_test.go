@@ -14,7 +14,7 @@ import (
 func SeckillExample() {
 	// 创建 Redis 配置
 	redisConfig := &redis.Config{
-		Host:         "localhost",
+		Host:         "redis",
 		Port:         6379,
 		Password:     "",
 		DB:           0,
@@ -169,7 +169,7 @@ func ConcurrentSeckillExample() {
 
 	// 创建 Redis 配置
 	redisConfig := &redis.Config{
-		Host:         "localhost",
+		Host:         "redis",
 		Port:         6379,
 		Password:     "",
 		DB:           0,
