@@ -76,3 +76,33 @@
 {"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
 {"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
 {"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"duration":2936125,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T22:15:32+08:00"}
+{"duration":1418542,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T22:15:32+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/inventory/stats/service","time":"2025-07-31T22:15:32+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/order/health","time":"2025-07-31T22:15:32+08:00"}
+{"duration":672250,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T22:15:32+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:18:20+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:18:20+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:34:07+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:34:27+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:35:45+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:35:45+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-07-31T22:36:01+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:37:25+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:37:25+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:37:27+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T22:37:27+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-07-31T22:37:28+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/cache/seckill/stock/123","time":"2025-07-31T22:40:17+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:38:22+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:38:22+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:26+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:26+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:37+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:37+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:40+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:40+08:00"}
+{"error":"缺少必需的header: timestamp","ip":"127.0.0.1","level":"warning","msg":"签名验证失败","path":"/api/v1/seckill/123","time":"2025-07-31T23:52:43+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:56+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-07-31T23:52:56+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-07-31T23:52:59+08:00"}

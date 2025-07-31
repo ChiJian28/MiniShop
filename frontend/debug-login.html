@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录调试工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 24px;
+            background: #ff4000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #e63600;
+        }
+        .log {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>🔍 登录功能调试工具</h1>
+    
+    <div class="debug-card">
+        <h3>测试登录</h3>
+        <input type="text" id="username" placeholder="用户名" value="admin">
+        <input type="password" id="password" placeholder="密码" value="password">
+        <button onclick="testLogin()">测试登录</button>
+        <button onclick="clearLog()">清除日志</button>
+        <button onclick="checkStorage()">检查存储</button>
+        <button onclick="testNavigation()">测试导航</button>
+    </div>
+
+    <div class="debug-card">
+        <h3>调试日志</h3>
+        <div id="log" class="log">点击"测试登录"开始调试...</div>
+    </div>
+
+    <div class="debug-card">
+        <h3>当前状态</h3>
+        <div id="status">
+            <p><strong>Token:</strong> <span id="tokenStatus">未设置</span></p>
+            <p><strong>用户:</strong> <span id="userStatus">未登录</span></p>
+            <p><strong>页面:</strong> <span id="pageStatus">调试页面</span></p>
+        </div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            logDiv.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        function updateStatus() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            document.getElementById('tokenStatus').textContent = token ? token.substring(0, 20) + '...' : '未设置';
+            
+            if (user) {
+                try {
+                    const userObj = JSON.parse(user);
+                    document.getElementById('userStatus').textContent = userObj.username || '未知用户';
+                } catch (e) {
+                    document.getElementById('userStatus').textContent = '解析错误';
+                }
+            } else {
+                document.getElementById('userStatus').textContent = '未登录';
+            }
+        }
+
+        async function testLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            clearLog();
+            log(`开始测试登录: ${username}/${password}`);
+            
+            // 1. 验证输入
+            if (!username || !password) {
+                log('❌ 用户名或密码为空', 'error');
+                return;
+            }
+            
+            if (username.length < 2) {
+                log('❌ 用户名至少2个字符', 'error');
+                return;
+            }
+            
+            if (password.length < 3) {
+                log('❌ 密码至少3个字符', 'error');
+                return;
+            }
+            
+            log('✅ 表单验证通过');
+            
+            // 2. 模拟API调用
+            try {
+                log('📡 模拟API调用...');
+                
+                // 模拟登录逻辑（与实际代码保持一致）
+                let response;
+                if (username === 'admin' && (password === 'password' || password === 'pwd')) {
+                    response = {
+                        code: 0,
+                        data: {
+                            token: 'mock_jwt_token_' + Date.now(),
+                            user: { id: 1, username },
+                        },
+                        message: '登录成功',
+                    };
+                } else if (username && password && password.length >= 3) {
+                    response = {
+                        code: 0,
+                        data: {
+                            token: 'mock_jwt_token_' + Date.now(),
+                            user: { id: Date.now(), username },
+                        },
+                        message: '登录成功',
+                    };
+                } else {
+                    throw new Error('用户名或密码错误');
+                }
+                
+                log(`✅ API响应: ${JSON.stringify(response, null, 2)}`, 'success');
+                
+                // 3. 存储token和用户信息
+                if (response.code === 0 && response.data?.token) {
+                    localStorage.setItem('token', response.data.token);
+                    log(`✅ Token已存储: ${response.data.token}`);
+                    
+                    if (response.data.user) {
+                        localStorage.setItem('user', JSON.stringify(response.data.user));
+                        log(`✅ 用户信息已存储: ${JSON.stringify(response.data.user)}`);
+                    }
+                    
+                    // 4. 更新状态显示
+                    updateStatus();
+                    
+                    // 5. 模拟页面跳转
+                    log('🔄 准备跳转到秒杀页面...');
+                    log('✅ 登录流程完成！在实际应用中现在会跳转到 /seckill', 'success');
+                    
+                    // 提供跳转链接
+                    setTimeout(() => {
+                        if (confirm('登录成功！是否跳转到实际的秒杀页面？')) {
+                            window.location.href = 'http://localhost:3000/seckill';
+                        }
+                    }, 1000);
+                    
+                } else {
+                    log('❌ 登录响应格式错误', 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ 登录失败: ${error.message}`, 'error');
+            }
+        }
+
+        function checkStorage() {
+            log('📋 检查本地存储...');
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            if (token) {
+                log(`Token: ${token}`, 'success');
+            } else {
+                log('没有找到Token', 'error');
+            }
+            
+            if (user) {
+                log(`用户信息: ${user}`, 'success');
+            } else {
+                log('没有找到用户信息', 'error');
+            }
+            
+            updateStatus();
+        }
+
+        function testNavigation() {
+            log('🧪 测试页面导航...');
+            log('主页: http://localhost:3000/');
+            log('登录页: http://localhost:3000/login');
+            log('秒杀页: http://localhost:3000/seckill');
+            
+            const hasToken = localStorage.getItem('token');
+            if (hasToken) {
+                log('✅ 有Token，应该可以访问秒杀页面', 'success');
+                if (confirm('是否打开秒杀页面？')) {
+                    window.open('http://localhost:3000/seckill', '_blank');
+                }
+            } else {
+                log('❌ 没有Token，访问秒杀页面会重定向到登录页', 'error');
+                if (confirm('是否打开登录页面？')) {
+                    window.open('http://localhost:3000/login', '_blank');
+                }
+            }
+        }
+
+        // 页面加载时更新状态
+        window.onload = function() {
+            updateStatus();
+            log('调试工具已加载，可以开始测试登录功能');
+        };
+    </script>
+</body>
+</html> 

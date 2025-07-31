@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    @apply h-full;
+  }
+  
+  body {
+    @apply font-sans antialiased;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+  }
+}
+
+@layer components {
+  .seckill-button {
+    @apply bg-seckill-orange hover:bg-seckill-orange-dark text-white font-bold py-4 px-8 rounded-lg shadow-seckill hover:shadow-seckill-hover transform hover:scale-105 transition-all duration-200 active:scale-95;
+  }
+  
+  .seckill-button:disabled {
+    @apply bg-gray-400 hover:bg-gray-400 cursor-not-allowed transform-none shadow-none;
+  }
+  
+  .product-card {
+    @apply bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden;
+  }
+  
+  .countdown-digit {
+    @apply bg-gray-900 text-white text-xl font-bold px-3 py-2 rounded-lg min-w-[3rem] text-center;
+  }
+  
+  .price-original {
+    @apply text-gray-400 line-through text-sm;
+  }
+  
+  .price-seckill {
+    @apply text-seckill-orange text-3xl font-bold;
+  }
+  
+  .stock-info {
+    @apply text-orange-600 font-medium;
+  }
+  
+  .loading-spinner {
+    @apply inline-block w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin;
+  }
+} 
