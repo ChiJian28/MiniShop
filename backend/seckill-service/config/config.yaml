@@ -20,7 +20,7 @@ cache_service:
   timeout: 5s
 
 rabbitmq:
-  url: "amqp://guest:guest@rabbitmq:5672/"
+  url: "amqp://admin:password@rabbitmq:5672/"
   exchange: "seckill"
   queue: "seckill.order"
   routing_key: "seckill.order.create"

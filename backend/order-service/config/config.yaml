@@ -5,7 +5,7 @@ server:
 database:
   driver: postgres  # postgres, mysql
   postgres:
-    host: postgres
+    host: postgres-order
     port: 5432
     user: postgres
     password: postgres
@@ -40,7 +40,7 @@ redis:
   write_timeout: 3s
 
 rabbitmq:
-  url: "amqp://guest:guest@rabbitmq:5672/"
+  url: "amqp://admin:password@rabbitmq:5672/"
   exchange: "seckill"
   queue: "seckill.order"
   routing_key: "seckill.order.create"

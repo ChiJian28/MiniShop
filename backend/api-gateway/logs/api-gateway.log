@@ -1,0 +1,78 @@
+{"level":"info","msg":"正在启动 API Gateway...","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"Redis连接成功","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"初始化服务客户端: cache-service -\u003e http://cache-service:8081","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"初始化服务客户端: seckill-service -\u003e http://seckill-service:8082","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"初始化服务客户端: order-service -\u003e http://order-service:8084","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"初始化服务客户端: inventory-service -\u003e http://inventory-service:8083","time":"2025-07-31T18:35:42+08:00"}
+{"level":"info","msg":"正在启动 API Gateway...","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"Redis连接成功","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"初始化服务客户端: cache-service -\u003e http://cache-service:8081","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"初始化服务客户端: seckill-service -\u003e http://seckill-service:8082","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"初始化服务客户端: order-service -\u003e http://order-service:8084","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"初始化服务客户端: inventory-service -\u003e http://inventory-service:8083","time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"启动监控服务器","port":9090,"time":"2025-07-31T18:47:17+08:00"}
+{"level":"info","msg":"启动 API Gateway 服务器","port":8080,"time":"2025-07-31T18:47:17+08:00"}
+{"duration":1069791,"error":"Get \"http://cache-service:8081/health\": dial tcp 172.18.0.7:8081: connect: connection refused","level":"error","method":"GET","msg":"代理请求失败","path":"/api/v1/cache/health","service":"cache-service","time":"2025-07-31T18:49:48+08:00"}
+{"duration":1201292,"error":"Get \"http://cache-service:8081/health\": dial tcp 172.18.0.7:8081: connect: connection refused","level":"error","method":"GET","msg":"代理请求失败","path":"/api/v1/cache/health","service":"cache-service","time":"2025-07-31T18:49:57+08:00"}
+{"level":"info","msg":"正在关闭 API Gateway...","time":"2025-07-31T18:56:10+08:00"}
+{"level":"info","msg":"API Gateway 已关闭","time":"2025-07-31T18:56:10+08:00"}
+{"level":"info","msg":"正在启动 API Gateway...","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"Redis连接成功","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"初始化服务客户端: seckill-service -\u003e http://seckill-service:8083","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"初始化服务客户端: order-service -\u003e http://order-service:8084","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"初始化服务客户端: inventory-service -\u003e http://inventory-service:8083","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"初始化服务客户端: cache-service -\u003e http://cache-service:8082","time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"启动监控服务器","port":9090,"time":"2025-07-31T18:56:11+08:00"}
+{"level":"info","msg":"启动 API Gateway 服务器","port":8080,"time":"2025-07-31T18:56:11+08:00"}
+{"duration":3248709,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:56:35+08:00"}
+{"duration":1098333,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:56:35+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/inventory/stats/service","time":"2025-07-31T18:56:35+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/order/health","time":"2025-07-31T18:56:35+08:00"}
+{"duration":616416,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:56:35+08:00"}
+{"duration":2480708,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:57:17+08:00"}
+{"duration":1200792,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:57:17+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/inventory/stats/service","time":"2025-07-31T18:57:18+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"缺少认证token","path":"/api/v1/order/health","time":"2025-07-31T18:57:18+08:00"}
+{"duration":963917,"level":"info","method":"GET","msg":"代理请求完成","path":"/api/v1/cache/health","service":"cache-service","status":200,"target_url":"http://cache-service:8082/health","time":"2025-07-31T18:57:18+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}
+{"ip":"172.217.25.49","level":"warning","msg":"IP限流触发","path":"/health","time":"2025-07-31T18:57:19+08:00"}

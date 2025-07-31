@@ -81,7 +81,7 @@ if [ -n "$TOKEN" ]; then
         "$BASE_URL/api/v1/cache/health")
     
     auth_code=$(echo "$auth_response" | tail -n1)
-    auth_body=$(echo "$auth_response" | head -n -1)
+    auth_body=$(echo "$auth_response" | sed '$d')
     
     if [ "$auth_code" -eq 200 ] || [ "$auth_code" -eq 502 ]; then
         echo -e "${GREEN}✅ 认证通过 (HTTP $auth_code)${NC}"

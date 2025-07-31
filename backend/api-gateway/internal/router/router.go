@@ -50,32 +50,38 @@ func SetupRouter(
 	router.GET("/health", gatewayHandler.HealthCheck)
 	router.GET("/stats", gatewayHandler.GetStats)
 
-	// 认证相关接口
-	auth := router.Group("/api/v1/auth")
+	// API路由组
+	api := router.Group("/api/v1")
+
+	// 认证相关接口（不需要认证中间件）
+	auth := api.Group("/auth")
 	{
 		auth.POST("/login", gatewayHandler.Login)
 		auth.POST("/refresh", gatewayHandler.RefreshToken)
 	}
 
-	// API路由组
-	api := router.Group("/api/v1")
-
+	// 需要认证的API路由
+	protectedAPI := api.Group("")
+	
 	// 应用认证中间件（除了白名单路径）
 	if authMiddleware != nil {
 		// JWT认证
-		api.Use(authMiddleware.JWTAuth())
+		protectedAPI.Use(authMiddleware.JWTAuth())
 		// 签名校验
-		api.Use(authMiddleware.SignatureAuth())
+		protectedAPI.Use(authMiddleware.SignatureAuth())
 	}
 
 	// 用户限流和接口限流
 	if rateLimiter != nil {
-		api.Use(rateLimiter.UserRateLimit())
-		api.Use(rateLimiter.EndpointRateLimit())
+		protectedAPI.Use(rateLimiter.UserRateLimit())
+		protectedAPI.Use(rateLimiter.EndpointRateLimit())
 	}
 
-	// 代理到后端服务
-	api.Any("/*path", serviceProxy.ProxyHandler())
+	// 代理到后端服务（除了认证路径）
+	protectedAPI.Any("/cache/*path", serviceProxy.ProxyHandler())
+	protectedAPI.Any("/seckill/*path", serviceProxy.ProxyHandler())
+	protectedAPI.Any("/order/*path", serviceProxy.ProxyHandler())
+	protectedAPI.Any("/inventory/*path", serviceProxy.ProxyHandler())
 
 	return router
 }

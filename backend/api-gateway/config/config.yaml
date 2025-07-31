@@ -7,13 +7,13 @@ server:
 # 微服务配置
 services:
   cache-service:
-    url: "http://cache-service:8081"
+    url: "http://cache-service:8082"
     timeout: 10s
     max_idle_conns: 100
     max_conns_per_host: 100
   
   seckill-service:
-    url: "http://seckill-service:8082"
+    url: "http://seckill-service:8083"
     timeout: 15s
     max_idle_conns: 100
     max_conns_per_host: 100
