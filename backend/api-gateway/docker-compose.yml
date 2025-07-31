@@ -1,0 +1,240 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    build: .
+    ports:
+      - "8080:8080"  # 主服务端口
+      - "9090:9090"  # 监控端口
+    environment:
+      - GO_ENV=production
+    depends_on:
+      - redis
+      - cache-service
+      - seckill-service
+      - order-service
+      - inventory-service
+    volumes:
+      - ./config:/root/config
+      - ./logs:/root/logs
+    networks:
+      - minishop-network
+
+  # Cache Service
+  cache-service:
+    build: ../cache-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    volumes:
+      - ../cache-service/config:/root/config
+    networks:
+      - minishop-network
+
+  # Seckill Service
+  seckill-service:
+    build: ../seckill-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - redis
+      - rabbitmq
+      - kafka
+    volumes:
+      - ../seckill-service/config:/root/config
+    networks:
+      - minishop-network
+
+  # Order Service
+  order-service:
+    build: ../order-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - postgres-order
+      - redis
+      - rabbitmq
+      - kafka
+    volumes:
+      - ../order-service/config:/root/config
+    networks:
+      - minishop-network
+
+  # Inventory Service
+  inventory-service:
+    build: ../inventory-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - postgres-inventory
+      - redis
+    volumes:
+      - ../inventory-service/config:/root/config
+    networks:
+      - minishop-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - minishop-network
+
+  # PostgreSQL for Order Service
+  postgres-order:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: order_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_order_data:/var/lib/postgresql/data
+    networks:
+      - minishop-network
+
+  # PostgreSQL for Inventory Service
+  postgres-inventory:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_inventory_data:/var/lib/postgresql/data
+    networks:
+      - minishop-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - minishop-network
+
+  # Kafka
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - minishop-network
+
+  # Zookeeper
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+    networks:
+      - minishop-network
+
+  # Nginx (作为负载均衡器，可选)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - api-gateway
+    networks:
+      - minishop-network
+    profiles:
+      - with-nginx
+
+  # Prometheus (监控)
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - minishop-network
+    profiles:
+      - monitoring
+
+  # Grafana (监控仪表板)
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - minishop-network
+    profiles:
+      - monitoring
+
+  # Redis Commander (Redis 管理界面)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8085:8081"
+    depends_on:
+      - redis
+    networks:
+      - minishop-network
+    profiles:
+      - tools
+
+volumes:
+  redis_data:
+  postgres_order_data:
+  postgres_inventory_data:
+  rabbitmq_data:
+  kafka_data:
+  zookeeper_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  minishop-network:
+    driver: bridge 

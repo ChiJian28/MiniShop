@@ -1,0 +1,176 @@
+server:
+  port: 8080
+  read_timeout: 30s
+  write_timeout: 30s
+  idle_timeout: 120s
+
+# 微服务配置
+services:
+  cache-service:
+    url: "http://cache-service:8081"
+    timeout: 10s
+    max_idle_conns: 100
+    max_conns_per_host: 100
+  
+  seckill-service:
+    url: "http://seckill-service:8082"
+    timeout: 15s
+    max_idle_conns: 100
+    max_conns_per_host: 100
+  
+  order-service:
+    url: "http://order-service:8084"
+    timeout: 20s
+    max_idle_conns: 100
+    max_conns_per_host: 100
+  
+  inventory-service:
+    url: "http://inventory-service:8083"
+    timeout: 10s
+    max_idle_conns: 100
+    max_conns_per_host: 100
+
+# Redis 配置（用于限流和缓存）
+redis:
+  host: redis
+  port: 6379
+  password: ""
+  db: 3  # 使用不同的数据库
+  pool_size: 50
+  min_idle_conns: 10
+  max_retries: 3
+  dial_timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+# 限流配置
+rate_limit:
+  enable: true
+  # 全局限流
+  global:
+    requests_per_second: 1000
+    burst: 2000
+  
+  # 用户限流
+  user:
+    requests_per_second: 10
+    burst: 20
+    window: 60s
+  
+  # IP 限流
+  ip:
+    requests_per_second: 100
+    burst: 200
+    window: 60s
+  
+  # 接口限流
+  endpoints:
+    "/api/v1/seckill/purchase":
+      requests_per_second: 500
+      burst: 1000
+    "/api/v1/cache/seckill/stock":
+      requests_per_second: 1000
+      burst: 2000
+
+# 认证配置
+auth:
+  enable: true
+  jwt_secret: "your-jwt-secret-key-change-in-production"
+  token_expire: 3600s  # 1小时
+  refresh_expire: 604800s  # 7天
+  
+  # 签名校验
+  signature:
+    enable: true
+    secret: "your-signature-secret-key"
+    expire: 300s  # 5分钟
+    required_headers: ["timestamp", "nonce", "signature"]
+  
+  # 白名单路径（不需要认证）
+  whitelist:
+    - "/health"
+    - "/metrics"
+    - "/api/v1/auth/login"
+    - "/api/v1/auth/register"
+    - "/api/v1/cache/health"
+
+# CORS 配置
+cors:
+  enable: true
+  allowed_origins: ["*"]
+  allowed_methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+  allowed_headers: ["*"]
+  exposed_headers: ["Content-Length"]
+  allow_credentials: true
+  max_age: 86400
+
+# 路由配置
+routing:
+  # 路径前缀映射
+  prefix_mapping:
+    "/api/v1/cache": "cache-service"
+    "/api/v1/seckill": "seckill-service"
+    "/api/v1/order": "order-service"
+    "/api/v1/inventory": "inventory-service"
+  
+  # 健康检查路径
+  health_checks:
+    cache-service: "/health"
+    seckill-service: "/health"
+    order-service: "/health"
+    inventory-service: "/health"
+  
+  # 负载均衡策略
+  load_balancer: "round_robin"  # round_robin, random, weighted
+
+# 监控配置
+monitoring:
+  enable: true
+  metrics_port: 9090
+  metrics_path: "/metrics"
+  
+  # 请求追踪
+  tracing:
+    enable: true
+    sample_rate: 0.1
+  
+  # 慢请求阈值
+  slow_request_threshold: 1s
+
+# 日志配置
+log:
+  level: info
+  format: json
+  file: "./logs/api-gateway.log"
+  
+  # 访问日志
+  access_log:
+    enable: true
+    file: "./logs/access.log"
+    format: "combined"
+
+# 缓存配置
+cache:
+  enable: true
+  default_expire: 300s
+  
+  # 缓存策略
+  strategies:
+    "/api/v1/cache/seckill/stock": 10s
+    "/api/v1/inventory": 60s
+
+# 熔断器配置
+circuit_breaker:
+  enable: true
+  failure_threshold: 5
+  success_threshold: 3
+  timeout: 30s
+  max_requests: 10
+
+# 重试配置
+retry:
+  enable: true
+  max_attempts: 3
+  initial_interval: 100ms
+  max_interval: 1s
+  multiplier: 2.0 

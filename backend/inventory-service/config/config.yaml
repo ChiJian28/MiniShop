@@ -1,0 +1,87 @@
+server:
+  port: 8083
+  grpc_port: 9083
+
+database:
+  driver: postgres  # postgres, mysql
+  postgres:
+    host: postgres
+    port: 5432
+    user: postgres
+    password: postgres
+    dbname: inventory_db
+    sslmode: disable
+    timezone: UTC
+  mysql:
+    host: mysql
+    port: 3306
+    user: root
+    password: mysql
+    dbname: inventory_db
+    charset: utf8mb4
+    parse_time: true
+    loc: Local
+  
+  # 连接池配置
+  max_idle_conns: 10
+  max_open_conns: 100
+  conn_max_lifetime: 3600s
+
+redis:
+  host: redis
+  port: 6379
+  password: ""
+  db: 2  # 使用不同的数据库
+  pool_size: 20
+  min_idle_conns: 10
+  max_retries: 3
+  dial_timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+inventory:
+  # 库存配置
+  default_stock: 1000        # 默认库存数量
+  low_stock_threshold: 100   # 低库存阈值
+  
+  # 健康检查配置
+  health_check:
+    enable: true
+    interval: 300s           # 5分钟检查一次
+    tolerance: 10            # 允许的库存差异阈值
+    alert_threshold: 50      # 报警阈值
+  
+  # 库存同步配置
+  sync:
+    batch_size: 100          # 批量同步大小
+    timeout: 30s             # 同步超时时间
+    retry_times: 3           # 重试次数
+  
+  # 补偿配置
+  compensation:
+    enable: true
+    check_interval: 600s     # 10分钟检查一次
+    auto_fix: false          # 是否自动修复差异
+    max_fix_amount: 1000     # 最大自动修复数量
+
+# 外部服务配置
+external_services:
+  cache_service:
+    host: cache-service
+    port: 8081
+    timeout: 5s
+  
+  order_service:
+    host: order-service
+    port: 8082
+    timeout: 10s
+
+log:
+  level: info
+  format: json
+  file: "./logs/inventory-service.log"
+
+monitoring:
+  enable: true
+  port: 8084
+  path: "/metrics" 

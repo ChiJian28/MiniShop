@@ -250,6 +250,7 @@ func (s *OrderService) validateOrderRequest(request *model.CreateOrderRequest) e
 
 // 幂等性检查
 func (s *OrderService) checkIdempotency(ctx context.Context, tx *gorm.DB, request *model.CreateOrderRequest) error {
+	_ = ctx
 	var existing model.OrderIdempotency
 	err := tx.Where("user_id = ? AND product_id = ?", request.UserID, request.ProductID).
 		First(&existing).Error
@@ -289,6 +290,7 @@ func (s *OrderService) cacheOrder(ctx context.Context, order *model.Order) {
 
 // 记录订单失败信息
 func (s *OrderService) recordOrderFailure(ctx context.Context, message *mq.SeckillOrderMessage, err error) error {
+	_ = ctx
 	messageData, _ := json.Marshal(message)
 
 	failure := &model.OrderFailure{
@@ -792,6 +794,7 @@ func (s *OrderService) ProcessFailedOrder(ctx context.Context, failure *model.Or
 
 // processInventoryLockFailure 处理库存锁定失败
 func (s *OrderService) processInventoryLockFailure(ctx context.Context, failure *model.OrderFailure) error {
+	_ = ctx
 	// 重试库存锁定逻辑
 	s.logger.WithField("order_id", failure.OrderID).Info("重试库存锁定")
 	// 这里可以实现具体的重试逻辑
@@ -800,6 +803,7 @@ func (s *OrderService) processInventoryLockFailure(ctx context.Context, failure 
 
 // processPaymentFailure 处理支付失败
 func (s *OrderService) processPaymentFailure(ctx context.Context, failure *model.OrderFailure) error {
+	_ = ctx
 	// 处理支付失败，可能需要退款或重试
 	s.logger.WithField("order_id", failure.OrderID).Info("处理支付失败")
 	// 这里可以实现具体的支付失败处理逻辑
@@ -808,6 +812,7 @@ func (s *OrderService) processPaymentFailure(ctx context.Context, failure *model
 
 // processOrderCreationFailure 处理订单创建失败
 func (s *OrderService) processOrderCreationFailure(ctx context.Context, failure *model.OrderFailure) error {
+	_ = ctx
 	// 处理订单创建失败
 	s.logger.WithField("order_id", failure.OrderID).Info("处理订单创建失败")
 	// 这里可以实现具体的订单创建失败处理逻辑
