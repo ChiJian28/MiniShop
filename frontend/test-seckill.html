@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>秒杀按钮状态测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .status-indicator {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .waiting { background: #fef3c7; color: #92400e; }
+        .active { background: #dcfce7; color: #166534; }
+        .ended { background: #fee2e2; color: #991b1b; }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .seckill-btn { background: #ff4000; color: white; }
+        .seckill-btn:hover { background: #e63600; }
+        .seckill-btn:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <h1>🔥 秒杀按钮状态测试</h1>
+    
+    <div class="test-card">
+        <h3>当前问题诊断</h3>
+        <p><strong>问题</strong>: 按钮显示"等待开始"且无法点击</p>
+        <p><strong>原因</strong>: 模拟数据中秒杀开始时间设置为当前时间 + 5秒</p>
+        <p><strong>解决方案</strong>: 修改开始时间为当前时间 - 1秒（已经开始）</p>
+    </div>
+
+    <div class="test-card">
+        <h3>秒杀状态模拟</h3>
+        
+        <div id="waiting-demo">
+            <div class="status-indicator waiting">状态: waiting (等待开始)</div>
+            <button class="seckill-btn" disabled>等待开始</button>
+            <p>倒计时: 00:00:05</p>
+        </div>
+
+        <div id="active-demo">
+            <div class="status-indicator active">状态: active (进行中)</div>
+            <button class="seckill-btn" onclick="simulateSeckill()">立即秒杀</button>
+            <p>距离结束: 00:59:55</p>
+        </div>
+
+        <div id="ended-demo">
+            <div class="status-indicator ended">状态: ended (已结束)</div>
+            <button class="seckill-btn" disabled>活动已结束</button>
+            <p>活动已结束</p>
+        </div>
+    </div>
+
+    <div class="test-card">
+        <h3>修复验证</h3>
+        <p>修改后的行为:</p>
+        <ul>
+            <li>✅ 页面加载后立即显示"立即秒杀"按钮</li>
+            <li>✅ 按钮为橙色且可点击</li>
+            <li>✅ 显示结束倒计时而不是开始倒计时</li>
+        </ul>
+        
+        <button onclick="window.location.reload()" style="background: #10b981; color: white;">
+            刷新页面测试
+        </button>
+        
+        <button onclick="openMainApp()" style="background: #3b82f6; color: white;">
+            打开主应用
+        </button>
+    </div>
+
+    <script>
+        function simulateSeckill() {
+            const btn = event.target;
+            btn.textContent = '处理中...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const results = ['秒杀成功！', '库存不足', '网络繁忙，请重试'];
+                const result = results[Math.floor(Math.random() * results.length)];
+                alert(result);
+                
+                if (result === '秒杀成功！') {
+                    btn.textContent = '秒杀成功';
+                    btn.style.background = '#10b981';
+                } else {
+                    btn.textContent = '立即秒杀';
+                    btn.disabled = false;
+                }
+            }, 2000);
+        }
+        
+        function openMainApp() {
+            window.open('http://localhost:3000', '_blank');
+        }
+        
+        // 模拟倒计时
+        let countdown = 5;
+        const countdownInterval = setInterval(() => {
+            if (countdown > 0) {
+                document.querySelector('#waiting-demo p').textContent = `倒计时: 00:00:0${countdown}`;
+                countdown--;
+            } else {
+                document.querySelector('#waiting-demo .status-indicator').className = 'status-indicator active';
+                document.querySelector('#waiting-demo .status-indicator').textContent = '状态: active (进行中)';
+                document.querySelector('#waiting-demo button').disabled = false;
+                document.querySelector('#waiting-demo button').textContent = '立即秒杀';
+                document.querySelector('#waiting-demo p').textContent = '距离结束: 00:59:55';
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录功能测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .demo-form {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input:focus {
+            border-color: #ff4000;
+            outline: none;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.2s;
+        }
+        .login-btn { 
+            background: #ff4000; 
+            color: white; 
+        }
+        .login-btn:hover { 
+            background: #e63600; 
+            transform: translateY(-1px);
+        }
+        .demo-btn { 
+            background: #10b981; 
+            color: white; 
+        }
+        .demo-btn:hover { 
+            background: #059669; 
+        }
+        .test-btn { 
+            background: #3b82f6; 
+            color: white; 
+        }
+        .test-btn:hover { 
+            background: #2563eb; 
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .info { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .feature-item {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔐 MiniShop 登录功能测试</h1>
+    
+    <div class="test-card">
+        <h3>功能概述</h3>
+        <p>这个登录系统包含以下特性：</p>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <strong>安全认证</strong><br>
+                <small>JWT Token 存储</small>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🚀</div>
+                <strong>自动跳转</strong><br>
+                <small>登录后跳转秒杀页</small>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <strong>响应式设计</strong><br>
+                <small>适配移动端</small>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <strong>表单验证</strong><br>
+                <small>实时错误提示</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-card">
+        <h3>登录测试</h3>
+        <div class="demo-form">
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" placeholder="请输入用户名" value="admin">
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" id="password" placeholder="请输入密码" value="password">
+            </div>
+            <button class="login-btn" onclick="testLogin()">登录测试</button>
+            <button class="demo-btn" onclick="fillDemo()">填入演示账号</button>
+            <button class="test-btn" onclick="testValidation()">测试表单验证</button>
+        </div>
+        <div id="loginResult"></div>
+    </div>
+
+    <div class="test-card">
+        <h3>路由测试</h3>
+        <p>测试不同的路由行为：</p>
+        <button class="test-btn" onclick="testRoute('/')">访问根路径 (/)</button>
+        <button class="test-btn" onclick="testRoute('/login')">访问登录页 (/login)</button>
+        <button class="test-btn" onclick="testRoute('/seckill')">访问秒杀页 (/seckill)</button>
+        <button class="test-btn" onclick="openMainApp()">打开完整应用</button>
+        <div id="routeResult"></div>
+    </div>
+
+    <div class="test-card">
+        <h3>预期行为</h3>
+        <div class="status info">
+            <strong>登录流程：</strong>
+            <ol style="margin: 10px 0; padding-left: 20px;">
+                <li>用户输入用户名和密码</li>
+                <li>点击"登录"按钮</li>
+                <li>前端验证表单（非空、长度检查）</li>
+                <li>发送 POST 请求到 /api/v1/auth/login</li>
+                <li>成功后存储 token 到 localStorage</li>
+                <li>自动跳转到 /seckill 页面</li>
+                <li>Header 显示用户名和"退出"按钮</li>
+            </ol>
+        </div>
+        
+        <div class="status success">
+            <strong>演示账号：</strong> admin / password<br>
+            <strong>任意账号：</strong> 任何非空用户名密码都可以登录（演示模式）
+        </div>
+    </div>
+
+    <div class="test-card">
+        <h3>技术实现</h3>
+        <ul>
+            <li>✅ React Router DOM 路由管理</li>
+            <li>✅ Context API 状态管理</li>
+            <li>✅ Protected Routes 路由保护</li>
+            <li>✅ localStorage Token 持久化</li>
+            <li>✅ 表单验证和错误处理</li>
+            <li>✅ 响应式 UI 设计</li>
+            <li>✅ 加载状态和用户反馈</li>
+        </ul>
+    </div>
+
+    <script>
+        function testLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const resultDiv = document.getElementById('loginResult');
+            
+            resultDiv.innerHTML = '<div class="status info">正在测试登录...</div>';
+            
+            // 模拟登录逻辑
+            setTimeout(() => {
+                if (!username || !password) {
+                    resultDiv.innerHTML = '<div class="status error">❌ 用户名或密码不能为空</div>';
+                } else if (username.length < 2) {
+                    resultDiv.innerHTML = '<div class="status error">❌ 用户名至少2个字符</div>';
+                } else if (password.length < 4) {
+                    resultDiv.innerHTML = '<div class="status error">❌ 密码至少4个字符</div>';
+                } else {
+                    const token = 'mock_jwt_token_' + Date.now();
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('user', JSON.stringify({id: 1, username}));
+                    
+                    resultDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ 登录成功！<br>
+                            Token: ${token.substring(0, 30)}...<br>
+                            用户: ${username}<br>
+                            <strong>在真实应用中，现在会跳转到秒杀页面</strong>
+                        </div>
+                    `;
+                }
+            }, 1500);
+        }
+        
+        function fillDemo() {
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = 'password';
+        }
+        
+        function testValidation() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '123';
+            testLogin();
+        }
+        
+        function testRoute(path) {
+            const resultDiv = document.getElementById('routeResult');
+            resultDiv.innerHTML = `
+                <div class="status info">
+                    测试路由: ${path}<br>
+                    在真实应用中：<br>
+                    • / → 重定向到 /seckill<br>
+                    • /login → 登录页面（已登录用户会重定向到 /seckill）<br>
+                    • /seckill → 秒杀页面（未登录用户会重定向到 /login）
+                </div>
+            `;
+        }
+        
+        function openMainApp() {
+            window.open('http://localhost:3000', '_blank');
+        }
+        
+        // 显示当前存储的认证信息
+        window.onload = function() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            if (token) {
+                const userObj = user ? JSON.parse(user) : null;
+                document.getElementById('loginResult').innerHTML = `
+                    <div class="status success">
+                        当前已登录状态：<br>
+                        Token: ${token.substring(0, 30)}...<br>
+                        用户: ${userObj?.username || '未知'}
+                    </div>
+                `;
+            }
+        };
+    </script>
+</body>
+</html> 
