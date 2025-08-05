@@ -3,6 +3,35 @@ import { Product, SeckillResponse } from '../types';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
+// 获取当前用户ID的辅助函数
+const getCurrentUserId = (): number => {
+  try {
+    const authStorage = localStorage.getItem('auth-storage');
+    if (authStorage) {
+      const authData = JSON.parse(authStorage);
+      if (authData.state?.user?.id) {
+        return authData.state.user.id;
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to get user ID from auth storage:', error);
+  }
+  return 1; // 默认用户ID
+};
+
+// 根据用户名生成稳定的用户ID
+const generateUserIdFromUsername = (username: string): number => {
+  // 简单的字符串哈希函数，为相同用户名生成相同的ID
+  let hash = 0;
+  for (let i = 0; i < username.length; i++) {
+    const char = username.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // 转换为32位整数
+  }
+  // 确保返回正数，并且在合理范围内
+  return Math.abs(hash % 10000) + 1000;
+};
+
 // 创建 axios 实例
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -55,9 +84,12 @@ export const seckillApi = {
   // 参与秒杀
   participateSeckill: async (productId: number): Promise<SeckillResponse> => {
     try {
+      const userId = getCurrentUserId();
+      console.log('Sending seckill request with userId:', userId, 'productId:', productId);
+      
       const response = await api.post(`/api/v1/seckill/${productId}`, {
         productId,
-        userId: 1, // 模拟用户ID
+        userId,
       });
       return response.data;
     } catch (error: any) {
@@ -111,11 +143,13 @@ export const seckillApi = {
         return result;
       } else if (username && password && password.length >= 3) {
         // 其他用户名密码组合也允许登录（演示用），密码至少3位
+        // 为不同用户名生成稳定的用户ID（基于用户名的哈希）
+        const userId = generateUserIdFromUsername(username);
         const result = {
           code: 0,
           data: {
             token: 'mock_jwt_token_' + Date.now(),
-            user: { id: Date.now(), username },
+            user: { id: userId, username },
           },
           message: '登录成功',
         };

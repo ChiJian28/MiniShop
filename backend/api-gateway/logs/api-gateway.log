@@ -148,3 +148,14 @@
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T10:55:39+08:00"}
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T10:55:39+08:00"}
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-08-05T10:55:41+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:05+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:05+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-08-05T11:02:06+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:24+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:32+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:40+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:02:50+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:03:00+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:05:11+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:05:11+08:00"}
+{"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-08-05T11:05:12+08:00"}
