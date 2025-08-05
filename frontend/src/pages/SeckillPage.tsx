@@ -4,12 +4,14 @@ import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { seckillApi } from '../services/api';
+import { useCartStore, useCartTotalCount } from '../stores/cartStore';
 
 const SeckillPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useCartTotalCount();
+  const addToCart = useCartStore((state) => state.addItem);
 
   // 从URL获取产品ID，默认为123
   const getProductId = (): number => {
@@ -40,9 +42,14 @@ const SeckillPage: React.FC = () => {
   };
 
   const handleSeckillComplete = (status: SeckillStatus) => {
-    if (status.success) {
-      // 秒杀成功，增加购物车数量
-      setCartCount(prev => prev + 1);
+    if (status.success && product) {
+      // 秒杀成功，添加到购物车
+      addToCart({
+        id: product.id,
+        productName: product.productName,
+        price: product.seckillPrice,
+        imageUrl: product.imageUrl,
+      });
       
       // 可以显示成功提示
       console.log('Seckill successful!', status);

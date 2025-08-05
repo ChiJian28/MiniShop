@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuthStore, useIsAuthenticated, useAuthUser } from '../stores/authStore';
 import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
@@ -7,7 +7,9 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ cartCount = 0 }) => {
-  const { isAuthenticated, user, logout } = useAuth();
+  const isAuthenticated = useIsAuthenticated();
+  const user = useAuthUser();
+  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
   const handleLogout = () => {

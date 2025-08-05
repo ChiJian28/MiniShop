@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { useAuthStore } from './stores/authStore';
 import LoginPage from './pages/LoginPage';
 import SeckillPage from './pages/SeckillPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -8,10 +8,15 @@ import ErrorBoundary from './components/ErrorBoundary';
 import './index.css';
 
 function App() {
+  const initializeAuth = useAuthStore((state) => state.initializeAuth);
+  
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
+
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <Router>
+      <Router>
           <div className="App">
             <Routes>
               {/* 默认路由重定向到秒杀页面 */}
@@ -68,7 +73,6 @@ function App() {
             </Routes>
           </div>
         </Router>
-      </AuthProvider>
     </ErrorBoundary>
   );
 }
