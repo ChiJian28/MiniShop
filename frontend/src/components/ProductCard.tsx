@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product, SeckillStatus } from '../types';
 import CountdownTimer from './CountdownTimer';
-import { seckillApi } from '../services/api';
+import { useSeckillPurchase } from '../hooks/useSeckill';
 
 interface ProductCardProps {
   product: Product;
@@ -9,18 +9,17 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [seckillStatus, setSeckillStatus] = useState<SeckillStatus | null>(null);
   const [isActive, setIsActive] = useState(product.status === 'active');
+  const seckillMutation = useSeckillPurchase();
 
   const handleSeckill = async () => {
-    if (isLoading || product.status !== 'active') return;
+    if (seckillMutation.isPending || product.status !== 'active') return;
 
-    setIsLoading(true);
     setSeckillStatus(null);
 
     try {
-      const response = await seckillApi.participateSeckill(product.id);
+      const response = await seckillMutation.mutateAsync(product.id);
       
       const status: SeckillStatus = {
         success: response.code === 0,
@@ -42,8 +41,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
 
       setSeckillStatus(status);
       onSeckillComplete?.(status);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -83,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
   };
 
   const getButtonText = () => {
-    if (isLoading) return '';
+    if (seckillMutation.isPending) return '';
     if (product.status === 'waiting') return '等待开始';
     if (product.status === 'ended') return '活动已结束';
     if (seckillStatus?.success) return '秒杀成功';
@@ -91,7 +88,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
   };
 
   const isButtonDisabled = () => {
-    return isLoading || 
+    return seckillMutation.isPending || 
            product.status !== 'active' || 
            !isActive || 
            seckillStatus?.success;
@@ -181,11 +178,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
           disabled={isButtonDisabled()}
           className="seckill-button w-full text-lg font-bold relative"
         >
-          {isLoading && (
+          {seckillMutation.isPending && (
             <div className="loading-spinner mr-2" />
           )}
           {getButtonText()}
-          {isLoading && (
+          {seckillMutation.isPending && (
             <span className="ml-2">处理中...</span>
           )}
         </button>

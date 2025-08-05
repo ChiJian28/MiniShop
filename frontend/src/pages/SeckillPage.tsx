@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Product, SeckillStatus } from '../types';
+import React, { useState } from 'react';
+import { SeckillStatus } from '../types';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { seckillApi } from '../services/api';
-import { useCartStore, useCartTotalCount } from '../stores/cartStore';
+import { useCartTotalCount } from '../stores/cartStore';
+import { useProductStatus } from '../hooks/useSeckill';
 
 const SeckillPage: React.FC = () => {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const cartCount = useCartTotalCount();
-  const addToCart = useCartStore((state) => state.addItem);
 
   // 从URL获取产品ID，默认为123
   const getProductId = (): number => {
@@ -21,37 +17,18 @@ const SeckillPage: React.FC = () => {
   };
 
   const productId = getProductId();
-
-  useEffect(() => {
-    loadProduct();
-  }, [productId]);
-
-  const loadProduct = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const productData = await seckillApi.getProductStatus(productId);
-      setProduct(productData);
-    } catch (err) {
-      console.error('Failed to load product:', err);
-      setError('加载商品信息失败，请刷新重试');
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+  // 使用 React Query 获取商品数据
+  const { 
+    data: product, 
+    isLoading: loading, 
+    error, 
+    refetch: loadProduct 
+  } = useProductStatus(productId);
 
   const handleSeckillComplete = (status: SeckillStatus) => {
-    if (status.success && product) {
-      // 秒杀成功，添加到购物车
-      addToCart({
-        id: product.id,
-        productName: product.productName,
-        price: product.seckillPrice,
-        imageUrl: product.imageUrl,
-      });
-      
-      // 可以显示成功提示
+    if (status.success) {
+      // 秒杀成功，React Query hook 会自动处理购物车逻辑
       console.log('Seckill successful!', status);
     }
   };
@@ -82,7 +59,7 @@ const SeckillPage: React.FC = () => {
               加载失败
             </h2>
             <p className="text-gray-600 mb-4">
-              {error || '商品信息加载失败'}
+              {error?.message || '商品信息加载失败'}
             </p>
             <button
               onClick={handleRetry}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { seckillApi } from '../services/api';
-import { useAuthStore } from '../stores/authStore';
+import { useLogin } from '../hooks/useAuth';
 import LoadingSpinner from './LoadingSpinner';
 
 interface LoginFormProps {
@@ -13,10 +12,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     username: '',
     password: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const login = useAuthStore((state) => state.login);
+  const loginMutation = useLogin();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,29 +51,28 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     
     if (!validateForm()) return;
 
-    setIsLoading(true);
     setError('');
 
     try {
       console.log('Attempting login with:', { username: formData.username, password: formData.password });
-      const response = await seckillApi.login(formData.username, formData.password);
-      console.log('Login response:', response);
       
-      if (response.code === 0 && response.data?.token) {
-        // 使用 AuthContext 的 login 方法更新全局状态
-        login(response.data.token, response.data.user);
-        console.log('Auth context updated with token:', response.data.token);
-        console.log('Auth context updated with user:', response.data.user);
-
+      const result = await loginMutation.mutateAsync({
+        username: formData.username,
+        password: formData.password,
+      });
+      
+      console.log('Login response:', result);
+      
+      if (result.code === 0 && result.data?.token) {
         // 回调通知父组件
-        onLoginSuccess?.(response.data.token);
+        onLoginSuccess?.(result.data.token);
 
         // 导航到秒杀页面
         console.log('Navigating to /seckill...');
         navigate('/seckill');
       } else {
-        console.log('Login failed - invalid response:', response);
-        setError(response.message || '登录失败，请重试');
+        console.log('Login failed - invalid response:', result);
+        setError(result.message || '登录失败，请重试');
       }
     } catch (error: any) {
       console.error('Login error:', error);
@@ -90,8 +87,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       } else {
         setError(error.response?.data?.message || '登录失败，请重试');
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -139,7 +134,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
             onChange={handleInputChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-seckill-orange focus:border-transparent transition-all duration-200"
             placeholder="请输入用户名"
-            disabled={isLoading}
+            disabled={loginMutation.isPending}
             autoComplete="username"
           />
         </div>
@@ -157,7 +152,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
             onChange={handleInputChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-seckill-orange focus:border-transparent transition-all duration-200"
             placeholder="请输入密码"
-            disabled={isLoading}
+            disabled={loginMutation.isPending}
             autoComplete="current-password"
           />
         </div>
@@ -165,10 +160,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         {/* 登录按钮 */}
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={loginMutation.isPending}
           className="seckill-button w-full text-lg font-bold mb-4"
         >
-          {isLoading ? (
+          {loginMutation.isPending ? (
             <div className="flex items-center justify-center">
               <LoadingSpinner size="sm" color="white" />
               <span className="ml-2">登录中...</span>
@@ -183,7 +178,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
           <button
             type="button"
             onClick={handleDemoLogin}
-            disabled={isLoading}
+            disabled={loginMutation.isPending}
             className="text-sm text-gray-500 hover:text-seckill-orange transition-colors underline"
           >
             使用演示账号 (admin/password)
