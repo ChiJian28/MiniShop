@@ -1,110 +1,117 @@
-# MiniShop 高性能秒杀系统
+# MiniShop: High-Performance Flash Sale System
 
-这是一个基于微服务架构的高性能秒杀系统，专为大规模并发场景设计。系统采用现代化的技术栈，具备完善的流控、降级、消息队列和分布式锁功能，能够有效应对秒杀场景下的高并发挑战。
+MiniShop is a high-performance flash sale system built on a modern **microservices architecture**, designed to handle large-scale concurrent traffic. It incorporates flow control, graceful degradation, message queues, and distributed locking to effectively handle the challenges of flash sale scenarios.
 
-## 🏗️ 技术栈
 
-### 后端技术
-- **Go 1.21** - 主要编程语言，高并发性能优异
-- **Gin** - HTTP 框架，提供 RESTful API
-- **GORM** - ORM 框架，简化数据库操作
-- **Redis** - 缓存和分布式锁，支持 Lua 脚本原子操作
-- **PostgreSQL** - 主数据库，ACID 事务保证
-- **RabbitMQ/Kafka** - 消息队列，支持异步削峰
-- **Docker** - 容器化部署
-- **Nginx** - 负载均衡和反向代理
+## 🏗️ Tech Stack
 
-### 前端技术
-- **React 18** - 前端框架
-- **TypeScript** - 类型安全的 JavaScript
-- **Tailwind CSS** - 原子化 CSS 框架
-- **Zustand** - 轻量级状态管理
-- **TanStack Query** - 数据获取和缓存管理
-- **Axios** - HTTP 客户端
+### Backend Technologies
+- **Go 1.21** – Main programming language, known for high performance in concurrent environments
+- **Gin** – Lightweight HTTP framework for building RESTful APIs
+- **GORM** – ORM library that simplifies database operations
+- **Redis** – In-memory cache and distributed lock management; supports atomic Lua scripts
+- **PostgreSQL** – Relational database providing strong ACID guarantees
+- **RabbitMQ / Kafka** – Message queue systems for asynchronous traffic smoothing
+- **Docker** – Containerization for consistent deployment
+- **Nginx** – Reverse proxy and load balancer
 
-### 监控与部署
-- **Prometheus + Grafana** - 监控告警
-- **Docker Compose** - 本地开发环境
-- **Kubernetes** - 生产环境容器编排（支持）
+### Frontend Technologies
+- **React 18** – Modern front-end framework
+- **TypeScript** – Strongly-typed JavaScript for safer development
+- **Tailwind CSS** – Utility-first CSS framework
+- **Zustand** – Lightweight state management library
+- **TanStack Query** – Data fetching and caching solution
+- **Axios** – Promise-based HTTP client
 
-## 🚀 核心功能
+### Monitoring & Deployment
+- **Prometheus + Grafana** – Real-time monitoring and alerting
+- **Docker Compose** – Local development environment orchestration
+- **Kubernetes (optional)** – Production-level container orchestration support
 
-### 秒杀系统特性
-- **原子性库存扣减** - 使用 Redis Lua 脚本确保库存操作原子性
-- **用户去重机制** - 防止用户重复购买，避免超卖问题
-- **异步订单处理** - 消息队列异步处理订单创建，提升响应速度
-- **多级限流保护** - 令牌桶、滑动窗口等多种限流算法
-- **熔断降级** - 自动故障检测和服务降级
-- **分布式锁** - Redis 分布式锁防止并发冲突
 
-### 高级特性
-- **最终一致性** - Redis 缓存与数据库数据最终一致性保证
-- **幂等性设计** - 防止重复请求导致的数据不一致
-- **实时监控** - 完整的性能监控和健康检查
-- **优雅关闭** - 支持平滑重启和资源清理
-- **链路追踪** - 分布式链路追踪支持
+## 🚀 Core Features
 
-## 📁 系统架构
+### Flash Sale Capabilities
+- **Atomic Stock Deduction** – Redis Lua scripts ensure atomic inventory changes
+- **User Deduplication** – Prevents duplicate purchases and overselling
+- **Asynchronous Order Processing** – Order creation is handled via message queues for responsiveness
+- **Multi-level Rate Limiting** – Token bucket, sliding window, and other strategies
+- **Circuit Breaker & Fallback** – Automatic failure detection and service degradation
+- **Distributed Locking** – Redis-based locking to avoid concurrent conflicts
 
-```
-xxx
-```
-### 微服务架构
-- **API Gateway** - 统一入口，认证授权、限流保护、路由代理
-- **Seckill Service** - 秒杀核心服务，处理高并发抢购逻辑
-- **Order Service** - 订单服务，异步处理订单创建和管理
-- **Inventory Service** - 库存服务，管理商品库存同步和一致性
-- **Cache Service** - 缓存服务，Redis 操作封装和分布式锁
-```
+### Advanced Features
+- **Eventual Consistency** – Ensures Redis cache and PostgreSQL remain consistent
+- **Idempotent Design** – Prevents duplicated operations under retry conditions
+- **Real-time Monitoring** – Performance and health metrics available through Grafana dashboards
+- **Graceful Shutdown** – Smooth restarts with resource cleanup
+- **Distributed Tracing** – End-to-end request tracking across services
 
-## 🚀 快速开始
 
-### 环境要求
+## 📁 System Architecture
+
+
+
+### Microservices Overview
+- **API Gateway** – Unified entry point for authentication, rate limiting, and routing
+- **Seckill Service** – Core flash sale logic with high-concurrency handling
+- **Order Service** – Asynchronous creation and management of orders
+- **Inventory Service** – Manages stock consistency and synchronization
+- **Cache Service** – Redis abstraction layer for locking and cache operations
+
+
+## 🚀 Getting Started
+
+### Prerequisites
 - **Go** >= 1.21
 - **Node.js** >= 16.0
 - **Docker** >= 20.0
 - **Docker Compose** >= 2.0
 
-## 🎯 核心特性详解
 
-### 1. 高并发处理
-- **Redis Lua 脚本**: 原子性库存扣减，避免超卖
-- **令牌桶算法**: 平滑限流，应对突发流量
-- **熔断器模式**: 自动故障检测和服务降级
-- **异步处理**: 消息队列削峰填谷
+## 🎯 Feature Breakdown
 
-### 2. 数据一致性
-- **最终一致性**: Redis 与 PostgreSQL 数据最终一致
-- **分布式事务**: 跨服务事务协调
-- **幂等性设计**: 防止重复操作
-- **补偿机制**: 失败自动重试和人工干预
+### 1. High-Concurrency Handling
+- **Atomic Stock Deduction** – Redis Lua script prevents overselling
+- **Token Bucket Algorithm** – Smooth rate limiting for burst traffic
+- **Circuit Breaker Pattern** – Automatic fallback and degradation
+- **Asynchronous Queueing** – Message queues buffer and smooth spikes
 
-### 3. 系统监控
-- **实时指标**: Prometheus 指标收集
-- **可视化面板**: Grafana 监控大屏
-- **健康检查**: 服务健康状态监控
-- **链路追踪**: 分布式请求追踪
+### 2. Data Consistency
+- **Eventual Consistency** – Cache and DB eventually synchronized
+- **Distributed Transactions** – Cross-service coordination where needed
+- **Idempotency** – Prevents duplicated operations on retries
+- **Compensation Mechanism** – Fallback logic for retries or manual intervention
 
-### 4. 用户体验
-- **实时倒计时**: 精确到秒的倒计时显示
-- **状态反馈**: 清晰的成功/失败状态提示
-- **响应式设计**: 完美适配桌面和移动端
-- **离线支持**: PWA 支持，可离线使用
+### 3. Monitoring & Observability
+- **Metrics Collection** – Prometheus scrapes key system indicators
+- **Dashboard Visualization** – Grafana displays real-time system health
+- **Health Checks** – Liveness/readiness probes for each service
+- **Distributed Tracing** – Track requests across service boundaries
 
-## 并发能力
+### 4. User Experience
+- **Countdown Timer** – Millisecond-level accurate countdown for events
+- **Status Feedback** – Clear success/failure indicators
+- **Responsive UI** – Optimized for desktop and mobile
+- **Offline Support** – PWA capabilities for offline access
+
+
+## ⚙️ Performance Benchmarks
+
 - **QPS**: > 10,000 requests/second
-- **并发用户**: > 50,000 concurrent users
-- **响应时间**: < 100ms (P99)
-- **可用性**: > 99.9%
+- **Concurrent Users**: > 50,000
+- **Response Time**: < 100ms (P99)
+- **Availability**: > 99.9%
 
-## 📄 许可证
 
-本项目基于 MIT 许可证开源 - 查看 [LICENSE](LICENSE) 文件了解详情。
+## 📄 License
 
-## 🙏 致谢
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-感谢所有为这个项目做出贡献的开发者和开源社区。
 
----
+## 🙏 Acknowledgements
 
-👉 如果这个项目对你有帮助，请给它一个 ⭐ 并分享给你的朋友们！ 👈
+Thanks to all contributors and the open-source community who helped make this project possible.
+
+
+👉 If you found this project helpful, please ⭐ it and share it with others!
+
