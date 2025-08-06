@@ -2,6 +2,21 @@
 
 MiniShop is a high-performance flash sale system built on a modern **microservices architecture**, designed to handle large-scale concurrent traffic. It incorporates flow control, graceful degradation, message queues, and distributed locking to effectively handle the challenges of flash sale scenarios.
 
+## 👀	 Demo
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e15ff04a-abe3-4a96-9057-dcc0ccabbde3" width="45%" style="margin: 5px"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f68f393a-3b06-4e32-b362-4d1077998551" width="45%" style="margin: 5px"/>
+  <img src="https://github.com/user-attachments/assets/5ab2902f-bdc8-4049-8f03-09aefd03c642" width="45%" style="margin: 5px"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ff25e579-745d-43af-9aaa-27faa348ca15" width="45%" style="margin: 5px"/>
+</p>
+
+
 
 ## 🏗️ Tech Stack
 
@@ -48,7 +63,7 @@ MiniShop is a high-performance flash sale system built on a modern **microservic
 
 
 ## 📁 System Architecture
-
+![backend_architecture](https://github.com/ChiJian28/MiniShop/blob/main/Architecture.png)
 
 
 ### Microservices Overview
@@ -57,16 +72,6 @@ MiniShop is a high-performance flash sale system built on a modern **microservic
 - **Order Service** – Asynchronous creation and management of orders
 - **Inventory Service** – Manages stock consistency and synchronization
 - **Cache Service** – Redis abstraction layer for locking and cache operations
-
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **Go** >= 1.21
-- **Node.js** >= 16.0
-- **Docker** >= 20.0
-- **Docker Compose** >= 2.0
-
 
 ## 🎯 Feature Breakdown
 
@@ -108,10 +113,7 @@ MiniShop is a high-performance flash sale system built on a modern **microservic
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
-## 🙏 Acknowledgements
-
-Thanks to all contributors and the open-source community who helped make this project possible.
-
+## Summary
 
 👉 If you found this project helpful, please ⭐ it and share it with others!
 
