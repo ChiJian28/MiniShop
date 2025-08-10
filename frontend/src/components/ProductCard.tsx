@@ -25,7 +25,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
         success: response.code === 0,
         message: response.message,
         type: response.code === 0 ? 'success' : 
-              response.data?.reason === 'sold_out' ? 'soldout' : 'error'
+              response.data?.reason === 'sold_out' ? 'soldout' :
+              response.data?.reason === 'already_purchased' ? 'already_purchased' : 'error'
       };
 
       setSeckillStatus(status);
@@ -36,7 +37,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
       const status: SeckillStatus = {
         success: false,
         message: errorResponse?.message || '网络错误，请重试',
-        type: errorResponse?.data?.reason === 'sold_out' ? 'soldout' : 'error'
+        type: errorResponse?.data?.reason === 'sold_out' ? 'soldout' :
+              errorResponse?.data?.reason === 'already_purchased' ? 'already_purchased' : 'error'
       };
 
       setSeckillStatus(status);
@@ -50,6 +52,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onSeckillComplete })
 
   const getStatusMessage = () => {
     if (!seckillStatus) return null;
+
+    if (seckillStatus.type === 'already_purchased') {
+      return (
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="text-blue-700 font-medium">您已参与过此次秒杀</span>
+          </div>
+          <p className="text-blue-600 text-sm mt-1">每人限购一次，感谢您的参与！</p>
+        </div>
+      );
+    }
 
     const statusConfig = {
       success: {

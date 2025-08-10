@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试防重复购买逻辑</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: #ff4000; color: white; }
+        .btn-primary:hover { background: #e63600; }
+        .btn-secondary { background: #6b7280; color: white; }
+        .btn-secondary:hover { background: #4b5563; }
+        .btn-success { background: #10b981; color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .status.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .status.already-purchased { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .status.info { background: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+        .purchase-history {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .log {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ 防重复购买逻辑测试</h1>
+    <p>这个页面用于测试用户只能购买一次的逻辑</p>
+
+    <div class="test-section">
+        <h3>用户信息</h3>
+        <div id="userInfo" class="status info">
+            正在获取用户信息...
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>商品测试</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+            <button class="button btn-primary" onclick="testPurchase(1001)">
+                购买 iPhone (ID: 1001)
+            </button>
+            <button class="button btn-primary" onclick="testPurchase(1002)">
+                购买 MacBook (ID: 1002)
+            </button>
+            <button class="button btn-primary" onclick="testPurchase(1003)">
+                购买 iPad (ID: 1003)
+            </button>
+        </div>
+        
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="button btn-secondary" onclick="showPurchaseHistory()">
+                查看购买记录
+            </button>
+            <button class="button btn-danger" onclick="clearAllPurchases()">
+                清除所有购买记录
+            </button>
+            <button class="button btn-success" onclick="clearLog()">
+                清除日志
+            </button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>购买记录</h3>
+        <div id="purchaseHistory" class="purchase-history">
+            点击"查看购买记录"按钮查看当前购买状态
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>测试结果</h3>
+        <div id="testResult" class="status info">
+            点击购买按钮开始测试
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>测试日志</h3>
+        <div id="testLog" class="log">
+            等待测试操作...
+        </div>
+    </div>
+
+    <script>
+        // 模拟获取当前用户ID的函数（与前端代码相同）
+        function getCurrentUserId() {
+            try {
+                const authStorage = localStorage.getItem('auth-storage');
+                if (authStorage) {
+                    const authData = JSON.parse(authStorage);
+                    if (authData.state?.user?.id) {
+                        return authData.state.user.id;
+                    }
+                }
+            } catch (error) {
+                console.warn('Failed to get user ID from auth storage:', error);
+            }
+            return 1; // 默认用户ID
+        }
+
+        // 记录日志
+        function log(message) {
+            const logElement = document.getElementById('testLog');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `[${timestamp}] ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        // 清除日志
+        function clearLog() {
+            document.getElementById('testLog').innerHTML = '日志已清除...\n';
+        }
+
+        // 显示用户信息
+        function showUserInfo() {
+            const userId = getCurrentUserId();
+            document.getElementById('userInfo').innerHTML = `
+                当前用户ID: ${userId}<br>
+                <small>用户ID用于标识不同用户的购买记录</small>
+            `;
+        }
+
+        // 测试购买逻辑
+        async function testPurchase(productId) {
+            const userId = getCurrentUserId();
+            const purchaseKey = `purchase_${userId}_${productId}`;
+            const hasAlreadyPurchased = localStorage.getItem(purchaseKey) === 'true';
+            
+            log(`开始测试购买 - 用户: ${userId}, 商品: ${productId}`);
+            log(`检查购买记录: ${hasAlreadyPurchased ? '已购买' : '未购买'}`);
+            
+            const resultElement = document.getElementById('testResult');
+            
+            try {
+                // 模拟API调用
+                await simulatePurchaseAPI(productId, userId);
+            } catch (error) {
+                // 处理错误
+                if (error.code === 1002) {
+                    // 已购买错误
+                    resultElement.className = 'status already-purchased';
+                    resultElement.innerHTML = `
+                        <strong>✋ 购买失败</strong><br>
+                        ${error.message}<br>
+                        <small>商品ID: ${productId} | 用户ID: ${userId}</small>
+                    `;
+                    log(`购买失败: ${error.message}`);
+                } else {
+                    // 其他错误
+                    resultElement.className = 'status error';
+                    resultElement.innerHTML = `
+                        <strong>❌ 购买失败</strong><br>
+                        ${error.message}<br>
+                        <small>商品ID: ${productId} | 错误码: ${error.code}</small>
+                    `;
+                    log(`购买失败: ${error.message} (错误码: ${error.code})`);
+                }
+            }
+        }
+
+        // 模拟购买API
+        async function simulatePurchaseAPI(productId, userId) {
+            const purchaseKey = `purchase_${userId}_${productId}`;
+            const hasAlreadyPurchased = localStorage.getItem(purchaseKey) === 'true';
+            
+            // 模拟网络延迟
+            await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+            
+            // 如果用户已经购买过，直接返回已购买错误
+            if (hasAlreadyPurchased) {
+                log('检测到重复购买，返回错误');
+                throw {
+                    code: 1002,
+                    message: '您已参与过此次秒杀',
+                    reason: 'already_purchased'
+                };
+            }
+            
+            // 模拟不同的响应结果（不包括重复购买）
+            const mockResponses = [
+                { code: 0, message: '秒杀成功！', success: true },
+                { code: 1001, message: '库存不足，秒杀失败', success: false },
+                { code: 1003, message: '秒杀太火爆了，请稍后再试', success: false },
+            ];
+            
+            const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+            
+            if (randomResponse.code === 0) {
+                // 秒杀成功，记录用户购买状态
+                localStorage.setItem(purchaseKey, 'true');
+                log(`秒杀成功 - 已记录购买状态`);
+                
+                const resultElement = document.getElementById('testResult');
+                resultElement.className = 'status success';
+                resultElement.innerHTML = `
+                    <strong>🎉 购买成功</strong><br>
+                    ${randomResponse.message}<br>
+                    <small>商品ID: ${productId} | 用户ID: ${userId}</small><br>
+                    <small>⚠️ 现在再次购买此商品将被阻止</small>
+                `;
+                
+                // 自动刷新购买记录
+                setTimeout(showPurchaseHistory, 500);
+                
+                return randomResponse;
+            } else {
+                log(`购买失败: ${randomResponse.message}`);
+                throw randomResponse;
+            }
+        }
+
+        // 显示购买记录
+        function showPurchaseHistory() {
+            const userId = getCurrentUserId();
+            const products = [
+                { id: 1001, name: 'iPhone 15 Pro Max' },
+                { id: 1002, name: 'MacBook Pro 14英寸' },
+                { id: 1003, name: 'iPad Pro 12.9英寸' }
+            ];
+            
+            let historyHtml = `<strong>用户 ${userId} 的购买记录:</strong><br><br>`;
+            let hasPurchases = false;
+            
+            products.forEach(product => {
+                const purchaseKey = `purchase_${userId}_${product.id}`;
+                const purchased = localStorage.getItem(purchaseKey) === 'true';
+                const status = purchased ? '✅ 已购买' : '❌ 未购买';
+                const statusClass = purchased ? 'color: #059669' : 'color: #6b7280';
+                
+                historyHtml += `<span style="${statusClass}">${status}</span> ${product.name} (ID: ${product.id})<br>`;
+                
+                if (purchased) {
+                    hasPurchases = true;
+                }
+            });
+            
+            if (!hasPurchases) {
+                historyHtml += '<br><em style="color: #6b7280;">暂无购买记录</em>';
+            }
+            
+            document.getElementById('purchaseHistory').innerHTML = historyHtml;
+            log('已刷新购买记录显示');
+        }
+
+        // 清除所有购买记录
+        function clearAllPurchases() {
+            const userId = getCurrentUserId();
+            const products = [1001, 1002, 1003];
+            
+            products.forEach(productId => {
+                const purchaseKey = `purchase_${userId}_${productId}`;
+                localStorage.removeItem(purchaseKey);
+            });
+            
+            log('已清除所有购买记录');
+            showPurchaseHistory();
+            
+            const resultElement = document.getElementById('testResult');
+            resultElement.className = 'status info';
+            resultElement.innerHTML = '✨ 购买记录已清除，现在可以重新测试购买逻辑';
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            showUserInfo();
+            showPurchaseHistory();
+            log('测试页面已加载，可以开始测试');
+            log('');
+            log('测试步骤:');
+            log('1. 点击购买按钮测试首次购买');
+            log('2. 再次点击相同商品测试重复购买阻止');
+            log('3. 查看购买记录确认状态');
+            log('4. 清除记录后可重新测试');
+        });
+    </script>
+</body>
+</html>

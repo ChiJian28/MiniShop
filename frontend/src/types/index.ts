@@ -23,7 +23,7 @@ export interface SeckillResponse {
 export interface SeckillStatus {
   success: boolean;
   message: string;
-  type: 'success' | 'error' | 'soldout' | 'waiting' | 'ended';
+  type: 'success' | 'error' | 'soldout' | 'already_purchased' | 'waiting' | 'ended';
 }
 
 export interface CountdownTime {

@@ -12,11 +12,11 @@ export const seckillKeys = {
 };
 
 // 获取商品状态
-export const useProductStatus = (productId: number) => {
+export const useProductStatus = (productId: number, options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: seckillKeys.productStatus(productId),
     queryFn: () => seckillApi.getProductStatus(productId),
-    enabled: !!productId,
+    enabled: options?.enabled !== undefined ? options.enabled : !!productId,
     // 秒杀商品状态变化较快，设置较短的缓存时间
     staleTime: 30 * 1000, // 30秒
     gcTime: 60 * 1000, // 1分钟

@@ -6,6 +6,7 @@ import { queryClient } from './lib/queryClient';
 import { useAuthStore } from './stores/authStore';
 import LoginPage from './pages/LoginPage';
 import SeckillPage from './pages/SeckillPage';
+import ProductListPage from './pages/ProductListPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 import './index.css';
@@ -32,6 +33,16 @@ function App() {
                 element={
                   <ProtectedRoute requireAuth={false}>
                     <LoginPage />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* 商品列表页面 - 需要登录 */}
+              <Route 
+                path="/products" 
+                element={
+                  <ProtectedRoute requireAuth={true}>
+                    <ProductListPage />
                   </ProtectedRoute>
                 } 
               />

@@ -164,3 +164,11 @@
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:38:57+08:00"}
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123","time":"2025-08-05T11:38:57+08:00"}
 {"error":"token is malformed: token contains an invalid number of segments","ip":"127.0.0.1","level":"warning","msg":"token验证失败","path":"/api/v1/seckill/123/status","time":"2025-08-05T11:38:58+08:00"}
+{"level":"info","msg":"正在启动 API Gateway...","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"Redis连接成功","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"初始化服务客户端: cache-service -\u003e http://cache-service:8082","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"初始化服务客户端: seckill-service -\u003e http://seckill-service:8083","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"初始化服务客户端: order-service -\u003e http://order-service:8084","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"初始化服务客户端: inventory-service -\u003e http://inventory-service:8083","time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"启动监控服务器","port":9090,"time":"2025-08-10T09:45:38+08:00"}
+{"level":"info","msg":"启动 API Gateway 服务器","port":8080,"time":"2025-08-10T09:45:38+08:00"}

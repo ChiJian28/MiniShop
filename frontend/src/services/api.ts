@@ -69,6 +69,18 @@ api.interceptors.response.use(
 
 // API 方法
 export const seckillApi = {
+  // 获取所有产品列表
+  getProductList: async (): Promise<Product[]> => {
+    try {
+      const response = await api.get('/api/v1/seckill/products');
+      return response.data.data;
+    } catch (error) {
+      // 如果后端服务不可用，返回模拟数据
+      console.warn('API not available, using mock product list');
+      return getMockProductList();
+    }
+  },
+
   // 获取产品状态
   getProductStatus: async (productId: number): Promise<Product> => {
     try {
@@ -93,11 +105,31 @@ export const seckillApi = {
       });
       return response.data;
     } catch (error: any) {
-      // 模拟不同的响应结果
+      // 使用 localStorage 模拟用户购买记录
+      const userId = getCurrentUserId();
+      const purchaseKey = `purchase_${userId}_${productId}`;
+      const hasAlreadyPurchased = localStorage.getItem(purchaseKey) === 'true';
+      
+      console.log('Mock seckill - User:', userId, 'Product:', productId, 'Already purchased:', hasAlreadyPurchased);
+      
+      // 如果用户已经购买过，直接返回已购买错误
+      if (hasAlreadyPurchased) {
+        console.log('User has already purchased this product');
+        throw { 
+          response: { 
+            data: { 
+              code: 1002, 
+              message: '您已参与过此次秒杀', 
+              data: { success: false, reason: 'already_purchased' } 
+            } 
+          } 
+        };
+      }
+      
+      // 模拟不同的响应结果（不包括重复购买，因为上面已经处理了）
       const mockResponses = [
         { code: 0, message: '秒杀成功！', data: { success: true, orderId: 'ORDER_' + Date.now() } },
         { code: 1001, message: '库存不足，秒杀失败', data: { success: false, reason: 'sold_out' } },
-        { code: 1002, message: '您已参与过此次秒杀', data: { success: false, reason: 'already_purchased' } },
         { code: 1003, message: '秒杀太火爆了，请稍后再试', data: { success: false, reason: 'too_busy' } },
       ];
       
@@ -107,6 +139,9 @@ export const seckillApi = {
       await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
       
       if (randomResponse.code === 0) {
+        // 秒杀成功，记录用户购买状态
+        localStorage.setItem(purchaseKey, 'true');
+        console.log('Seckill successful - recorded purchase for user:', userId, 'product:', productId);
         return randomResponse;
       } else {
         throw { response: { data: randomResponse } };
@@ -173,35 +208,63 @@ export const seckillApi = {
 
 // 模拟产品数据
 function getMockProductData(productId: number): Product {
+  const products = getMockProductList();
+  return products.find(p => p.id === productId) || products[0];
+}
+
+// 模拟产品列表数据
+function getMockProductList(): Product[] {
   const now = new Date();
   
   // 可以通过环境变量控制秒杀状态，方便测试
   const showCountdown = process.env.REACT_APP_SHOW_COUNTDOWN === 'true';
   
-  let startTime: Date;
-  let endTime: Date;
-  
-  if (showCountdown) {
-    // 显示倒计时场景：5秒后开始
-    startTime = new Date(now.getTime() + 5000);
-    endTime = new Date(startTime.getTime() + 3600000);
-  } else {
-    // 立即可用场景：已经开始
-    startTime = new Date(now.getTime() - 1000);
-    endTime = new Date(now.getTime() + 3600000);
-  }
+  const products = [
+    {
+      id: 1001,
+      productName: 'iPhone 15 Pro Max 256GB 深空黑色',
+      imageUrl: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop',
+      originalPrice: 9999,
+      seckillPrice: 6999,
+    },
+    {
+      id: 1002,
+      productName: 'MacBook Pro 14英寸 M3 芯片',
+      imageUrl: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop',
+      originalPrice: 14999,
+      seckillPrice: 12999,
+    },
+    {
+      id: 1003,
+      productName: 'iPad Pro 12.9英寸 M2 芯片',
+      imageUrl: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop',
+      originalPrice: 8799,
+      seckillPrice: 7299,
+    },
+  ];
 
-  return {
-    id: productId,
-    productName: 'iPhone 15 Pro Max 256GB 深空黑色',
-    imageUrl: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop',
-    originalPrice: 9999,
-    seckillPrice: 6999,
-    stock: Math.floor(Math.random() * 100) + 10,
-    startTime: startTime.toISOString(),
-    endTime: endTime.toISOString(),
-    status: now < startTime ? 'waiting' : now < endTime ? 'active' : 'ended',
-  };
+  return products.map((product, index) => {
+    let startTime: Date;
+    let endTime: Date;
+    
+    if (showCountdown) {
+      // 显示倒计时场景：每个商品不同的开始时间
+      startTime = new Date(now.getTime() + (index + 1) * 5000);
+      endTime = new Date(startTime.getTime() + 3600000);
+    } else {
+      // 立即可用场景：已经开始
+      startTime = new Date(now.getTime() - 1000);
+      endTime = new Date(now.getTime() + 3600000);
+    }
+
+    return {
+      ...product,
+      stock: Math.floor(Math.random() * 100) + 10,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
+      status: now < startTime ? 'waiting' : now < endTime ? 'active' : 'ended',
+    } as Product;
+  });
 }
 
 export default api; 
