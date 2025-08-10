@@ -1,2 +1,82 @@
 # Node modules
 node_modules/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.DS_Store
+
+# 依赖和构建
+node_modules/
+build/
+dist/
+.next/
+.nuxt/
+.cache/
+
+# 环境变量和配置
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env
+
+# 日志文件
+*.log
+logs/
+*.log.*
+
+# 测试文件
+test-*.html
+debug-*.html
+*.test.html
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.temp
+.tmp/
+temp/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 密钥和证书
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# 备份文件
+*.bak
+*.backup
+*~
+
+# 操作系统生成的文件
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# 包管理器文件
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 覆盖率报告
+coverage/
+*.lcov
+
+# 性能分析文件
+*.prof
+*.pprof
